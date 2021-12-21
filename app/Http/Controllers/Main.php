@@ -2,20 +2,34 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\FormularioRequest;
 use Illuminate\Http\Request;
 
 class Main extends Controller
 {
-    public function index() {
+    public function index(Request $request) {
 
-        return view('formulario');
+        $this->executar($request);
+
+        print_r($request->session()->get('CLIENTE')['nome']);
+
+        die();
+        echo '<pre>';
+        print_r($request->session()->all());
     }
 
-    public function formulario_submit(FormularioRequest $request) {
+    private function executar(Request $request) {
 
-        $request->validated();
+        // colocar variaveis na sessão
+        // $request->session()->put('apelido', 'Neto');
 
-        echo 'Tudo ok!';
+        // $cliente = [
+        //     'nome' => 'Dimas',
+        //     'apelido' => 'Neto',
+        //     'fone' => '97233-4851'
+        // ];
+
+        // $request->session()->put(['CLIENTE' => $cliente]);
+
+        // $request->session()->flush();
     }
 }

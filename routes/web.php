@@ -13,5 +13,4 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'Main@index')->name('formulario');
-Route::post('/formulario_submit', 'Main@formulario_submit')->name('formulario_submit');
+Route::get('/', 'Main@index');
