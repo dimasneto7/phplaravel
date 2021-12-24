@@ -6,30 +6,34 @@ use Illuminate\Http\Request;
 
 class Main extends Controller
 {
-    public function index(Request $request) {
+    public function index() {
 
-        $this->executar($request);
 
-        print_r($request->session()->get('CLIENTE')['nome']);
+        // session()->flush();
+        // session()->forget('nome');
+        // session()->put('nome', 'joao');
 
-        die();
-        echo '<pre>';
-        print_r($request->session()->all());
+        // $nome = session()->pull('nome');
+        // echo $nome;
+
+        // if(session()->has('nome')){
+        //     echo 'sim';
+        // } else {
+        //     echo 'não';
+        // }
+
+        // session()->flash('valor_temp', 50000);
+
+        // echo '<pre>';
+        // print_r(session()->all());
+        $this->teste();
     }
 
-    private function executar(Request $request) {
-
-        // colocar variaveis na sessão
-        // $request->session()->put('apelido', 'Neto');
-
-        // $cliente = [
-        //     'nome' => 'Dimas',
-        //     'apelido' => 'Neto',
-        //     'fone' => '97233-4851'
-        // ];
-
-        // $request->session()->put(['CLIENTE' => $cliente]);
-
-        // $request->session()->flush();
+    private function teste(){
+        if(session('valor_temp')){
+            echo 'sim';
+        } else {
+            echo 'não';
+        }
     }
 }
