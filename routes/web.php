@@ -22,11 +22,10 @@ Route::get('/logout', 'Main@logout')->name('logout');
 
 Route::get('/aaa', function(){
 
-    $v = [1, 2, 3];
+    // echo VERSAO
+    echo config('constantes.VERSAO');
+    echo '<br>';
+    echo config('constantes.MYSQL_HOST');
 
-    Tools::teste();
-    Tools::printData($v);
-
-    echo 'Olá Mundo';
 });
 
