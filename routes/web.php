@@ -20,3 +20,13 @@ Route::post('/login_submit', 'Main@login_submit')->name('login_submit');
 Route::get('/home', 'Main@home')->name('home');
 Route::get('/logout', 'Main@logout')->name('logout');
 
+Route::get('/aaa', function(){
+
+    $v = [1, 2, 3];
+
+    Tools::teste();
+    Tools::printData($v);
+
+    echo 'Olá Mundo';
+});
+
