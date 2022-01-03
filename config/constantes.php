@@ -1,15 +1,13 @@
 <?php
 
 return [
-    'VERSAO' => 'v1.0.0',
-
-    // MYSQL
-    'MYSQL_HOST' => '127.0.0.1',
-    'MYSQL_DB' => 'loja_online',
-    'MYSQL_USER' => 'user_loja',
-    'MYSQL_PASS' => '123456789',
-
-    // EMAIL
-    'EMAIL_USER' => 'xxxx'
-
+   // mail
+   'MAIL_TRANSPORT'     => 'smtp',
+   'MAIL_HOST'          => 'smtp.gmail.com',
+   'MAIL_PORT'          => 587,
+   'MAIL_ENCRYPTION'    => 'tls',
+   'MAIL_USERNAME'      => 'dimasneto237@gmail.com',
+   'MAIL_PASSWORD'      => 'isabellapriscilla',
+   'MAIL_FROM'          => 'dimasneto237@gmail.com',
+   'MAIL_FROM_NAME'     => 'Dimas Neto',
 ];

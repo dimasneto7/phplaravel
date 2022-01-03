@@ -1,5 +1,7 @@
 <?php
 
+use App\Mail\EmailTeste;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,10 +24,6 @@ Route::get('/logout', 'Main@logout')->name('logout');
 
 Route::get('/aaa', function(){
 
-    // echo VERSAO
-    echo config('constantes.VERSAO');
-    echo '<br>';
-    echo config('constantes.MYSQL_HOST');
-
+    Mail::to('dimas_fcn@outlook.com')->send(new EmailTeste());
+    echo 'email enviado';
 });
-
