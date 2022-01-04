@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Classes\Random;
+use App\Classes\Enc;
 use App\Http\Requests\LoginRequest;
 use Illuminate\Http\Request;
 use App\Models\Usuario;
@@ -10,12 +10,10 @@ use Illuminate\Support\Facades\Hash;
 
 class Main extends Controller
 {
-    private $R;
-
+    private $Enc;
 
     public function __construct(){
-
-        $this->R = new Random();
+        $this->Enc = new Enc();
     }
 
     public function index() {
@@ -111,11 +109,20 @@ class Main extends Controller
             return redirect()->route('login');
         }
 
-        $data = [
-            'smstoken' => $this->R->SMSToken()
-        ];
+        return view('home');
+    }
 
-        return view('home', $data);
+    public function edit($id_usuario){
+
+        $id_usuario = $this->Enc->encriptar($id_usuario);
+
+        echo "Vou editar os dados do usuário $id_usuario";
+    }
+
+    public function final($hash){
+
+        $hash = $this->Enc->desencriptar($hash);
+        echo 'valor: ' . $hash;
     }
 }
 

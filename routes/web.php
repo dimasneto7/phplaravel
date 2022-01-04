@@ -27,3 +27,7 @@ Route::get('/aaa', function(){
     Mail::to('dimas_fcn@outlook.com')->send(new EmailTeste());
     echo 'email enviado';
 });
+
+Route::get('/edit/{id_usuario}', 'Main@edit')->name('main_edit');
+
+Route::get('/final/{hash}', 'Main@final')->name('main_final');
