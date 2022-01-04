@@ -7,6 +7,7 @@ use App\Http\Requests\LoginRequest;
 use Illuminate\Http\Request;
 use App\Models\Usuario;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 
 class Main extends Controller
 {
@@ -95,10 +96,17 @@ class Main extends Controller
 
         // login é válido
         session()->put('usuario', $usuario);
+
+        // log
+        Log::channel('main')->info('Houve um login.');
+
         return redirect()->route('index');
     }
 
     public function logout(){
+
+        Log::channel('main')->info('Houve um logout.');
+
         session()->forget('usuario');
         return redirect()->route('index');
     }
