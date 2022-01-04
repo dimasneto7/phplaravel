@@ -3,18 +3,20 @@
 namespace App\Http\Controllers;
 
 use App\Classes\Enc;
+use App\Classes\Logger;
 use App\Http\Requests\LoginRequest;
 use Illuminate\Http\Request;
 use App\Models\Usuario;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Log;
 
 class Main extends Controller
 {
     private $Enc;
+    private $Logger;
 
     public function __construct(){
         $this->Enc = new Enc();
+        $this->Logger = new Logger();
     }
 
     public function index() {
@@ -70,7 +72,7 @@ class Main extends Controller
         // validação
         $request->validated();
 
-        // verificar dados de login_submit
+        // verificar dados de login
         $usuario = trim($request->input('text_usuario'));
         $senha = trim($request->input('text_senha'));
 
@@ -78,10 +80,10 @@ class Main extends Controller
 
         // verifica se existe o usuario
         if(!$usuario){
-            // usuário não existe
-            //    a) registrar um erro (usuário não existe)
-            //    b) passar essa informação de forma a ser apresentada no frm login
-            //    c) voltar ao formulario de login
+
+            // Logger
+            $this->Logger->log('error', trim($request->input('text_usuario')) . ' - Não existe o usuário indicado.');
+
             session()->flash('erro', ['Não existe o usuário.']);
             return redirect()->route('login');
 
@@ -90,6 +92,10 @@ class Main extends Controller
 
         // verificar se a senha está correta
         if(!Hash::check($senha, $usuario->senha)){
+
+            // Logger
+            $this->Logger->log('error', trim($request->input('text_usuario')) . ' - Senha inválida');
+
             session()->flash('erro', ['Senha inválida']);
             return redirect()->route('login');
         }
@@ -97,15 +103,16 @@ class Main extends Controller
         // login é válido
         session()->put('usuario', $usuario);
 
-        // log
-        Log::channel('main')->info('Houve um login.');
+        // logger
+        $this->Logger->log('info', 'Fez o seu login');
 
         return redirect()->route('index');
     }
 
     public function logout(){
 
-        Log::channel('main')->info('Houve um logout.');
+        // logger
+        $this->Logger->log('info', 'Fez o seu logout.');
 
         session()->forget('usuario');
         return redirect()->route('index');
