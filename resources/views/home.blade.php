@@ -15,6 +15,9 @@
             <li><a href="{{route('main_edit', ['id_usuario' => $enc->encriptar($user->id)])}}">EDIT</a> - {{$user->usuario}}</li>
         @endforeach
         </ul>
+    </div>
 
+    <div>
+        <img src={{asset('storage/imagens/imagem1.jpg')}}>
     </div>
 @endsection
