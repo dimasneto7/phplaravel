@@ -109,20 +109,18 @@ class Main extends Controller
             return redirect()->route('login');
         }
 
-        return view('home');
+        $data = [
+            'usuarios' => Usuario::all()
+        ];
+
+        return view('home', $data);
     }
 
     public function edit($id_usuario){
 
-        $id_usuario = $this->Enc->encriptar($id_usuario);
+        $id_usuario = $this->Enc->desencriptar($id_usuario);
 
-        echo "Vou editar os dados do usuário $id_usuario";
-    }
-
-    public function final($hash){
-
-        $hash = $this->Enc->desencriptar($hash);
-        echo 'valor: ' . $hash;
+        echo 'O usuário a editar é ' . $id_usuario;
     }
 }
 
