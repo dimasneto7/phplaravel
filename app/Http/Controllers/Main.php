@@ -8,6 +8,7 @@ use App\Http\Requests\LoginRequest;
 use Illuminate\Http\Request;
 use App\Models\Usuario;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class Main extends Controller
 {
@@ -158,6 +159,20 @@ class Main extends Controller
 
         // $request->ficheiro->store('public/imagens');
         echo 'terminado';
+    }
+
+    public function lista_ficheiros(){
+
+        $files = Storage::files('public/imagens');
+
+        echo '<pre>';
+        print_r($files);
+    }
+
+    public function download($file){
+
+        return response()->download("storage/pdfs/$file");
+
     }
 }
 

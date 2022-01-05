@@ -34,3 +34,6 @@ Route::get('/edit/{id_usuario}', 'Main@edit')->name('main_edit');
 
 // upload de ficheiro
 Route::post('/upload', 'Main@upload')->name('main_upload');
+
+Route::get('/lista_ficheiros', 'Main@lista_ficheiros')->name('main_lista_ficheiros');
+Route::get('/download/{file}', 'Main@download')->name('main_download');
