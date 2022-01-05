@@ -18,6 +18,11 @@
     </div>
 
     <div>
-        <img src={{asset('storage/imagens/imagem1.jpg')}}>
+        <h3>Upload de Ficheiro</h3>
+        <form method="post" action="{{route('main_upload')}}" enctype="multipart/form-data">
+            @csrf
+            <input type="file" name="ficheiro">
+            <input type="submit" value="Enviar">
+        <form>
     </div>
 @endsection

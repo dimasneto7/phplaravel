@@ -137,6 +137,12 @@ class Main extends Controller
 
         echo 'O usuário a editar é ' . $id_usuario;
     }
+
+    public function upload(Request $request){
+
+        $request->ficheiro->store('public/imagens');
+        echo 'terminado';
+    }
 }
 
 // user@gmail.com / abc123

@@ -31,3 +31,6 @@ Route::get('/aaa', function(){
 Route::get('/final/{hash}', 'Main@final')->name('main_final');
 
 Route::get('/edit/{id_usuario}', 'Main@edit')->name('main_edit');
+
+// upload de ficheiro
+Route::post('/upload', 'Main@upload')->name('main_upload');
