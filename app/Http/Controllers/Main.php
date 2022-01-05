@@ -140,7 +140,23 @@ class Main extends Controller
 
     public function upload(Request $request){
 
-        $request->ficheiro->store('public/imagens');
+        // validação do upload
+        $validate = $request->validate(
+            // rules
+            [
+                'ficheiro' => 'required|image|mimes:png|max:100|dimensions:min_width=100,min_height=100,max_width=1000,max_height=500'
+            ],
+            // error messages
+            [
+                'ficheiro.required' => 'A imagem é obrogatória',
+                'ficheiro.image' => 'Deve carregar uma imagem',
+                'ficheiro.mimes' => 'A imagem tem que ser em formato png',
+                'ficheiro.max' => 'No máximo com 12 kb',
+                'ficheito.dimensions' => 'Dimensões inválidas'
+            ]
+        );
+
+        // $request->ficheiro->store('public/imagens');
         echo 'terminado';
     }
 }
